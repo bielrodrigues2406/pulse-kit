@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "openpulse.session"
+    },
+    "version": {
+      "type": "number",
+      "const": 1
+    },
+    "startedAtUtc": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+    },
+    "timeZone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "app": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "openPulse"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version"
+      ]
+    },
+    "sensor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "model"
+      ]
+    },
+    "activity": {
+      "type": "object",
+      "properties": {
+        "sport": {
+          "type": "string",
+          "enum": [
+            "cycling",
+            "running",
+            "rest",
+            "other"
+          ]
+        },
+        "indoor": {
+          "type": "boolean"
+        },
+        "protocol": {
+          "type": "string",
+          "enum": [
+            "free",
+            "ramp",
+            "orthostatic"
+          ]
+        }
+      },
+      "required": [
+        "sport",
+        "indoor",
+        "protocol"
+      ]
+    },
+    "heartRate1Hz": {
+      "type": "object",
+      "properties": {
+        "bpm": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "bpm"
+      ]
+    },
+    "rr": {
+      "type": "object",
+      "properties": {
+        "ticks1024": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 65535
+          }
+        }
+      },
+      "required": [
+        "ticks1024"
+      ]
+    },
+    "estimates": {
+      "type": "object",
+      "properties": {
+        "dfaAlpha1": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tS": {
+                "type": "number",
+                "minimum": 0
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "tS",
+              "value"
+            ]
+          }
+        },
+        "rmssdMs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tS": {
+                "type": "number",
+                "minimum": 0
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "tS",
+              "value"
+            ]
+          }
+        },
+        "respirationBrpm": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tS": {
+                "type": "number",
+                "minimum": 0
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "tS",
+              "value"
+            ]
+          }
+        },
+        "cadenceRpm": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tS": {
+                "type": "number",
+                "minimum": 0
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "tS",
+              "value"
+            ]
+          }
+        },
+        "swayRmsMg": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tS": {
+                "type": "number",
+                "minimum": 0
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "tS",
+              "value"
+            ]
+          }
+        }
+      }
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tS": {
+            "type": "number",
+            "minimum": 0
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "tS",
+          "label"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "startedAtUtc",
+    "timeZone",
+    "app",
+    "sensor",
+    "activity",
+    "heartRate1Hz",
+    "rr"
+  ]
+}

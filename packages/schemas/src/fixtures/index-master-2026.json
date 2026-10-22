@@ -1,0 +1,79 @@
+{
+  "schema_version": "2.0.0",
+  "year": 2026,
+  "updated_at": "2026-10-22T10:00:00.000Z",
+  "params": {
+    "algorithm_version": "2.0.0",
+    "hr_rest_bpm": 55,
+    "hr_max_bpm": "polar_zones",
+    "banister_sex_coefficients": "male",
+    "drift_warmup_sec": 600,
+    "drift_min_analyzed_sec": 1200,
+    "impact_recovery_hours": 48
+  },
+  "total_workouts": 2,
+  "workouts": [
+    {
+      "id": "AbC123xy",
+      "start_time_local": "2026-10-15T18:48:25",
+      "start_time_utc": "2026-10-15T21:48:25Z",
+      "utc_offset_min": -180,
+      "sport": "RUNNING",
+      "detailed_sport_info": "TREADMILL_RUNNING",
+      "device": "Polar Flow app",
+      "duration_sec": 2401,
+      "distance_m": null,
+      "calories_kcal": 500,
+      "hr_avg_bpm": 137,
+      "hr_max_bpm": 143,
+      "hr_min_bpm": 130,
+      "hr_sample_interval_sec": 1,
+      "hr_valid_ratio": 1,
+      "hr_quarters_avg_bpm": [
+        131.6,
+        134.8,
+        138.2,
+        141.4
+      ],
+      "hr_drift_pct": 3.59,
+      "polar_cardio_load": 60.5,
+      "polar_cardio_load_status": "MEDIUM",
+      "banister_trimp": 43.11,
+      "edwards_trimp": 100,
+      "tibial_impact_category": "HIGH_AXIAL_IMPACT",
+      "tibial_recovery_window_hours": 48,
+      "drive_folder_id": "folder-run"
+    },
+    {
+      "id": "Ride0001",
+      "start_time_local": "2026-10-17T07:00:00",
+      "start_time_utc": "2026-10-17T10:00:00Z",
+      "utc_offset_min": -180,
+      "sport": "CYCLING",
+      "detailed_sport_info": "INDOOR_CYCLING",
+      "device": "Polar Flow app",
+      "duration_sec": 2401,
+      "distance_m": null,
+      "calories_kcal": 500,
+      "hr_avg_bpm": 137,
+      "hr_max_bpm": 143,
+      "hr_min_bpm": 130,
+      "hr_sample_interval_sec": 1,
+      "hr_valid_ratio": 1,
+      "hr_quarters_avg_bpm": [
+        131.6,
+        134.8,
+        138.2,
+        141.4
+      ],
+      "hr_drift_pct": 3.59,
+      "polar_cardio_load": 60.5,
+      "polar_cardio_load_status": "MEDIUM",
+      "banister_trimp": 43.11,
+      "edwards_trimp": 100,
+      "tibial_impact_category": "NON_IMPACT",
+      "tibial_recovery_window_hours": 0,
+      "drive_folder_id": "folder-ride"
+    }
+  ]
+}

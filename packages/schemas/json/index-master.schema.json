@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^2\\.\\d+\\.\\d+$"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "params": {
+      "type": "object",
+      "properties": {
+        "algorithm_version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "algorithm_version"
+      ],
+      "additionalProperties": {}
+    },
+    "total_workouts": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "workouts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "start_time_local": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "start_time_utc": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "utc_offset_min": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sport": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "detailed_sport_info": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "device": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "duration_sec": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "distance_m": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "calories_kcal": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "hr_avg_bpm": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "hr_max_bpm": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "hr_min_bpm": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "hr_sample_interval_sec": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "hr_valid_ratio": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "hr_quarters_avg_bpm": {
+            "type": "array",
+            "items": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "hr_drift_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "polar_cardio_load": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "polar_cardio_load_status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "banister_trimp": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "edwards_trimp": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "tibial_impact_category": {
+            "type": "string",
+            "enum": [
+              "HIGH_AXIAL_IMPACT",
+              "NON_IMPACT"
+            ]
+          },
+          "tibial_recovery_window_hours": {
+            "type": "number",
+            "minimum": 0
+          },
+          "drive_folder_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "start_time_local",
+          "start_time_utc",
+          "utc_offset_min",
+          "sport",
+          "detailed_sport_info",
+          "device",
+          "duration_sec",
+          "distance_m",
+          "calories_kcal",
+          "hr_avg_bpm",
+          "hr_max_bpm",
+          "hr_min_bpm",
+          "hr_sample_interval_sec",
+          "hr_valid_ratio",
+          "hr_quarters_avg_bpm",
+          "hr_drift_pct",
+          "polar_cardio_load",
+          "polar_cardio_load_status",
+          "banister_trimp",
+          "edwards_trimp",
+          "tibial_impact_category",
+          "tibial_recovery_window_hours"
+        ],
+        "additionalProperties": {}
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "year",
+    "updated_at",
+    "params",
+    "total_workouts",
+    "workouts"
+  ],
+  "additionalProperties": {}
+}

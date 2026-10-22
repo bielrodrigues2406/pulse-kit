@@ -1,0 +1,59 @@
+{
+  "id": "AbC123xy",
+  "upload_time": "2026-10-15T23:17:23Z",
+  "device": "Polar Flow app",
+  "start_time": "2026-10-15T18:48:25",
+  "start_time_utc_offset": -180,
+  "duration": "PT120.5S",
+  "heart_rate": {
+    "average": 137,
+    "maximum": 143
+  },
+  "sport": "RUNNING",
+  "has_route": false,
+  "detailed_sport_info": "TREADMILL_RUNNING",
+  "calories": 500,
+  "heart_rate_zones": [
+    {
+      "index": 0,
+      "lower_limit": 100,
+      "upper_limit": 119,
+      "in_zone": "PT0S"
+    },
+    {
+      "index": 1,
+      "lower_limit": 119,
+      "upper_limit": 139,
+      "in_zone": "PT20M"
+    },
+    {
+      "index": 2,
+      "lower_limit": 139,
+      "upper_limit": 159,
+      "in_zone": "PT20M"
+    },
+    {
+      "index": 3,
+      "lower_limit": 159,
+      "upper_limit": 179,
+      "in_zone": "PT0S"
+    },
+    {
+      "index": 4,
+      "lower_limit": 179,
+      "upper_limit": 199,
+      "in_zone": "PT0S"
+    }
+  ],
+  "samples": [
+    {
+      "recording_rate": 1,
+      "sample_type": 0,
+      "data": "130,130,130,130,130,131,131,131,131,131,131,131,131,131,132,132,132,132,132,132,132,132,132,133,133,133,133,133,133,133,133,133,133,134,134,134,134,134,134,134,134,134,135,135,135,135,135,135,135,135,135,136,136,136,136,136,136,136,136,136,137,137,137,137,137,137,137,137,137,138,138,138,138,138,138,138,138,138,139,139,139,139,139,139,139,139,139,140,140,140,140,140,140,140,140,140,140,141,141,141,141,141,141,141,141,141,142,142,142,142,142,142,142,142,142,143,143,143,143,143"
+    }
+  ],
+  "training_load_pro": {
+    "cardio-load": 60.5,
+    "cardio-load-interpretation": "MEDIUM"
+  }
+}

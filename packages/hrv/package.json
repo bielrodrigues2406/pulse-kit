@@ -1,0 +1,21 @@
+{
+  "name": "@pulse-kit/hrv",
+  "version": "0.1.0",
+  "description": "Pure HRV and training-load math: RR artifact gate, RMSSD, DFA alpha-1, VT1/VT2 from a ramp, TRIMP, HR drift, ATL/CTL/TSB.",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  }
+}

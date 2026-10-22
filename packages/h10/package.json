@@ -1,0 +1,21 @@
+{
+  "name": "@pulse-kit/h10",
+  "version": "0.1.0",
+  "description": "Polar H10 Bluetooth parsers: Heart Rate Measurement (0x2A37) and PMD ECG/ACC frames.",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  }
+}

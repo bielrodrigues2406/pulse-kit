@@ -1,0 +1,25 @@
+{
+  "name": "@pulse-kit/mcp",
+  "version": "0.1.0",
+  "description": "Local stdio MCP server: training load, the 48 h impact rule, workout and recording analysis for Claude.",
+  "type": "module",
+  "bin": {
+    "pulse-kit-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "@pulse-kit/fit-session": "workspace:*",
+    "@pulse-kit/hrv": "workspace:*",
+    "@pulse-kit/schemas": "workspace:*",
+    "zod": "4.6.5"
+  }
+}

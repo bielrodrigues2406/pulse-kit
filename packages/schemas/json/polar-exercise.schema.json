@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      ]
+    },
+    "start_time": {
+      "type": "string"
+    },
+    "start_time_utc_offset": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "duration": {
+      "type": "string"
+    },
+    "sport": {
+      "type": "string"
+    },
+    "detailed_sport_info": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "heart_rate": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "average": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "maximum": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": {}
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "heart_rate_zones": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "index": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "lower_limit": {
+                "type": "number"
+              },
+              "upper_limit": {
+                "type": "number"
+              },
+              "in_zone": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "index",
+              "lower_limit",
+              "upper_limit",
+              "in_zone"
+            ],
+            "additionalProperties": {}
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "samples": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "recording_rate": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "sample_type": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "data": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "recording_rate",
+              "sample_type",
+              "data"
+            ],
+            "additionalProperties": {}
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "training_load_pro": {
+      "anyOf": [
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {}
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "start_time",
+    "start_time_utc_offset",
+    "duration",
+    "sport"
+  ],
+  "additionalProperties": {}
+}

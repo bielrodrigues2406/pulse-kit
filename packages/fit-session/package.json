@@ -1,0 +1,24 @@
+{
+  "name": "@pulse-kit/fit-session",
+  "version": "0.1.0",
+  "description": "Writes FIT activity files that keep beat-to-beat RR intervals (HRV message 78), on top of the official Garmin FIT SDK.",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@garmin/fitsdk": "21.218.0"
+  }
+}

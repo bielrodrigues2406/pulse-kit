@@ -1,0 +1,21 @@
+{
+  "name": "pulse-kit",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.6.0",
+  "engines": {
+    "node": "^24.21.0"
+  },
+  "scripts": {
+    "postinstall": "pnpm build:packages",
+    "build:packages": "pnpm --filter \"./packages/**\" build",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm build:packages && pnpm -r typecheck",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.0",
+    "typescript": "6.0.3",
+    "vitest": "5.0.2"
+  }
+}

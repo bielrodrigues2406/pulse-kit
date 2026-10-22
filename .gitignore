@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local configuration and secrets; .env.example documents every variable.
+.env
+.env.*
+!.env.example
+
+# Recordings never enter this public repository (they live in physio-lab).
+*.fit
+!packages/**/fixtures/*.fit
+recordings/

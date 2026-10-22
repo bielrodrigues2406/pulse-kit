@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+
+engineStrict: true
+
+# Refuse versions published less than a day ago; a compromised release is usually yanked within hours.
+minimumReleaseAge: 1440
+
+# No dependency here needs an install script.
+allowBuilds:
+  esbuild: false

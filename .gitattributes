@@ -1,0 +1,11 @@
+# Force LF everywhere; the author develops on Windows (docs/SPEC.md, section 2).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.fit binary
+*.zip binary
+*.gz binary

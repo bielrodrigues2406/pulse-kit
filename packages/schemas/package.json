@@ -1,0 +1,26 @@
+{
+  "name": "@pulse-kit/schemas",
+  "version": "0.1.0",
+  "description": "Versioned data contracts shared by openPulse, polar-drive-sync and the MCP server.",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "json": "node scripts/write-json-schemas.mjs"
+  },
+  "dependencies": {
+    "zod": "4.6.5"
+  }
+}
