@@ -154,6 +154,9 @@ describe('pulse-kit MCP server', () => {
     expect(status.impact.lockedUntilUtc).toBe('2026-10-23T22:00:00.000Z');
     expect(status.recentDays).toHaveLength(3);
     expect(status.workoutsCounted).toBe(2);
+    expect((json as { recentWorkouts: { id: string; impact: boolean }[] }).recentWorkouts).toEqual([
+      expect.objectContaining({ id: 'run1', impact: true }),
+    ]);
     expect(status.today.ctl).toBeGreaterThan(0);
   });
 

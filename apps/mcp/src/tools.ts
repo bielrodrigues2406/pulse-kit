@@ -70,7 +70,7 @@ export function registerTools(server: McpServer, deps: Dependencies): void {
     {
       title: 'Carga de treino e trava tibial',
       description:
-        'ATL (7 dias), CTL (42 dias) e TSB a partir dos index_master do polar-drive-sync, mais a regra pessoal de 48 h sem impacto apos corrida. TSB e o CTL menos o ATL de ontem.',
+        'ATL (7 dias), CTL (42 dias) e TSB a partir dos index_master do polar-drive-sync, os treinos dos ultimos dias com seus ids e a regra pessoal de 48 h sem impacto apos corrida. TSB e o CTL menos o ATL de ontem.',
       inputSchema: {
         date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe('Dia de referencia (YYYY-MM-DD); padrao: hoje no fuso configurado.'),
         metric: z.enum(LOAD_METRICS).default('banister_trimp').describe('Metrica de carga diaria.'),
