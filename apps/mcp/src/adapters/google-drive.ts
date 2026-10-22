@@ -35,7 +35,7 @@ export function createGoogleDriveReader(credentials: GoogleCredentials, now: () 
     });
     if (!res.ok) {
       const body = await res.text();
-      const hint = body.includes('invalid_grant') ? ' (refresh token expirado: app OAuth em modo "Testing" expira em 7 dias)' : '';
+      const hint = body.includes('invalid_grant') ? ' (refresh token expirado: o app OAuth em modo "Testing" expira tokens em 7 dias)' : '';
       throw new Error(`Google OAuth falhou (${String(res.status)})${hint}`);
     }
     const data = (await res.json()) as { access_token: string; expires_in: number };

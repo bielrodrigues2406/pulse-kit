@@ -26,5 +26,5 @@ const server = createServer({
 
 await server.connect(new StdioServerTransport());
 process.stderr.write(
-  `pulse-kit MCP pronto (Drive: ${config.google === null ? 'nao configurado' : 'ok'}, GitHub: ${config.github === null ? 'nao configurado' : 'ok'})\n`,
+  `pulse-kit MCP pronto (Drive: ${config.google === null ? 'não configurado' : 'ok'}, GitHub: ${config.github === null ? 'não configurado' : 'ok'})\n`,
 );

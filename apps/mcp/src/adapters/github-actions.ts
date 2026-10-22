@@ -38,13 +38,13 @@ export function createGithubWorkflowRunner(target: WorkflowTarget): WorkflowRunn
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({ ref: target.ref, inputs }),
       });
-      if (res.status !== 204) throw new Error(`GitHub recusou o disparo (${String(res.status)}): ${await res.text()}`);
+      if (res.status !== 204) throw new Error(`O GitHub recusou o disparo (${String(res.status)}): ${await res.text()}`);
     },
 
     async latestRunSince(since: Date): Promise<WorkflowRun | null> {
       const params = new URLSearchParams({ event: 'workflow_dispatch', per_page: '5' });
       const res = await fetch(`${base}/runs?${params.toString()}`, { headers });
-      if (!res.ok) throw new Error(`GitHub respondeu ${String(res.status)} ao listar execucoes`);
+      if (!res.ok) throw new Error(`GitHub respondeu ${String(res.status)} ao listar execuções`);
       const data = (await res.json()) as RunsResponse;
       const run = (data.workflow_runs ?? []).find((r) => Date.parse(r.created_at) >= since.getTime());
       return run === undefined

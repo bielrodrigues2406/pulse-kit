@@ -37,7 +37,7 @@ async function guarded(run: () => Promise<CallToolResult>): Promise<CallToolResu
 
 function requireDrive(deps: Dependencies): { drive: DriveReader; root: string } {
   if (deps.drive === null || deps.driveRootFolderId === null) {
-    throw new Error('Google Drive nao configurado: defina GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN e GOOGLE_DRIVE_FOLDER_ID.');
+    throw new Error('Google Drive não configurado: defina GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN e GOOGLE_DRIVE_FOLDER_ID.');
   }
   return { drive: deps.drive, root: deps.driveRootFolderId };
 }
@@ -70,10 +70,10 @@ export function registerTools(server: McpServer, deps: Dependencies): void {
     {
       title: 'Carga de treino e trava tibial',
       description:
-        'ATL (7 dias), CTL (42 dias) e TSB a partir dos index_master do polar-drive-sync, os treinos dos ultimos dias com seus ids e a regra pessoal de 48 h sem impacto apos corrida. TSB e o CTL menos o ATL de ontem.',
+        'ATL (7 dias), CTL (42 dias) e TSB a partir dos index_master do polar-drive-sync, os treinos dos últimos dias com seus ids e a regra pessoal de 48 h sem impacto após corrida. TSB é o CTL menos o ATL de ontem.',
       inputSchema: {
-        date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe('Dia de referencia (YYYY-MM-DD); padrao: hoje no fuso configurado.'),
-        metric: z.enum(LOAD_METRICS).default('banister_trimp').describe('Metrica de carga diaria.'),
+        date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe('Dia de referência (AAAA-MM-DD); padrão: hoje no fuso configurado.'),
+        metric: z.enum(LOAD_METRICS).default('banister_trimp').describe('Métrica de carga diária.'),
         recent_days: z.number().int().min(1).max(60).default(14).describe('Quantos dias recentes listar.'),
       },
       annotations: { readOnlyHint: true, openWorldHint: true },
@@ -92,7 +92,7 @@ export function registerTools(server: McpServer, deps: Dependencies): void {
     {
       title: 'Detalhar um treino da Polar',
       description:
-        'Le o telemetry_1hz.json de um treino sincronizado e devolve FC por quarto, deriva apos 10 min de aquecimento, tempo por zona, TRIMP de Edwards e pausas.',
+        'Lê o telemetry_1hz.json de um treino sincronizado e devolve FC por quarto, deriva após 10 min de aquecimento, tempo por zona, TRIMP de Edwards e pausas.',
       inputSchema: { id: z.string().min(1).describe('Id do treino na Polar, por exemplo 5llKAe7n.') },
       annotations: { readOnlyHint: true, openWorldHint: true },
     },
@@ -101,12 +101,12 @@ export function registerTools(server: McpServer, deps: Dependencies): void {
         const { drive } = requireDrive(deps);
         const { workouts } = await loadWorkouts(deps, recentYears(localDate(deps.now(), deps.timeZone)));
         const workout = workouts.find((w) => w.id === id);
-        if (workout === undefined) return fail(`Treino ${id} nao esta nos indices deste ano nem do anterior.`);
+        if (workout === undefined) return fail(`O treino ${id} não está nos índices deste ano nem do anterior.`);
         if (workout.drive_folder_id === undefined || workout.drive_folder_id === null) {
-          return fail(`O indice nao tem a pasta do treino ${id}; rode o sync com rebuild_index.`);
+          return fail(`O índice não tem a pasta do treino ${id}; rode o sync com rebuild_index.`);
         }
         const fileId = await drive.findChild(workout.drive_folder_id, TELEMETRY_FILE);
-        if (fileId === null) return fail(`A pasta do treino ${id} nao tem ${TELEMETRY_FILE}.`);
+        if (fileId === null) return fail(`A pasta do treino ${id} não tem ${TELEMETRY_FILE}.`);
         return ok(workoutReport(polarExerciseSchema.parse(await drive.downloadJson(fileId))));
       }),
   );
@@ -114,12 +114,12 @@ export function registerTools(server: McpServer, deps: Dependencies): void {
   server.registerTool(
     'analyze_recording',
     {
-      title: 'Analisar gravacao com R-R',
+      title: 'Analisar gravação com R-R',
       description:
-        'Analisa uma sessao exportada pelo openPulse (.json) ou um FIT com mensagens HRV (.fit): artefatos, RMSSD, DFA alpha-1 por minuto, tempo acima de VT1 (0,75) e abaixo de VT2 (0,50), limiares da rampa e queda ortostatica. Tudo sao estimativas.',
+        'Analisa uma sessão exportada pelo openPulse (.json) ou um FIT com mensagens HRV (.fit): artefatos, RMSSD, DFA alpha-1 por minuto, tempo acima de VT1 (0,75) e abaixo de VT2 (0,50), limiares da rampa e queda ortostática. Tudo são estimativas.',
       inputSchema: {
         path: z.string().min(1).describe('Caminho do arquivo local.'),
-        protocol: z.enum(['free', 'ramp', 'orthostatic']).optional().describe('Sobrepoe o protocolo gravado no arquivo.'),
+        protocol: z.enum(['free', 'ramp', 'orthostatic']).optional().describe('Sobrepõe o protocolo gravado no arquivo.'),
       },
       annotations: { readOnlyHint: true, openWorldHint: false },
     },
@@ -136,16 +136,16 @@ export function registerTools(server: McpServer, deps: Dependencies): void {
     {
       title: 'Sincronizar Polar agora',
       description:
-        'Dispara o workflow do polar-drive-sync no GitHub Actions e espera ele terminar (ate o tempo limite). Use antes de consultar um treino que acabou de terminar.',
+        'Dispara o workflow do polar-drive-sync no GitHub Actions e espera ele terminar (até o tempo limite). Use antes de consultar um treino que acabou de terminar.',
       inputSchema: {
-        rebuild_index: z.boolean().default(false).describe('Reconstroi os indices a partir de todos os arquivos do Drive.'),
-        timeout_s: z.number().int().min(0).max(600).default(240).describe('Quanto esperar pelo fim da execucao; 0 so dispara.'),
+        rebuild_index: z.boolean().default(false).describe('Reconstrói os índices a partir de todos os arquivos do Drive.'),
+        timeout_s: z.number().int().min(0).max(600).default(240).describe('Quanto esperar pelo fim da execução; 0 só dispara.'),
       },
       annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
     },
     async ({ rebuild_index, timeout_s }) =>
       guarded(async () => {
-        if (deps.workflow === null) return fail('GitHub nao configurado: defina GITHUB_TOKEN (Actions: read and write no polar-drive-sync).');
+        if (deps.workflow === null) return fail('GitHub não configurado: defina GITHUB_TOKEN (Actions: read and write no polar-drive-sync).');
         const since = new Date(deps.now().getTime() - MS_PER_SECOND);
         // Only send the input when needed, so the call also works against the v1 workflow.
         await deps.workflow.dispatch(rebuild_index ? { rebuild_index: 'true' } : {});

@@ -64,13 +64,13 @@ export function recordingReport(input: RecordingInput): RecordingReport {
     .map((p) => ({ minute: p.tMs / MS_PER_MINUTE, alpha1: round(p.alpha1, 3), hrBpm: round(p.hrBpm, 1) }));
 
   const notes: string[] = [];
-  if (input.rrMs.length === 0) notes.push('O arquivo nao tem intervalos R-R: sem DFA alpha-1 nem RMSSD.');
-  if (points.length === 0 && input.rrMs.length > 0) notes.push('Nenhuma janela de 2 min teve batimentos suficientes com ate 5% de artefatos.');
-  if (points.some((p) => p.lowConfidence)) notes.push('Ha janelas com 3-5% de artefatos: alpha-1 com confianca reduzida.');
+  if (input.rrMs.length === 0) notes.push('O arquivo não tem intervalos R-R: sem DFA alpha-1 nem RMSSD.');
+  if (points.length === 0 && input.rrMs.length > 0) notes.push('Nenhuma janela de 2 min teve batimentos suficientes com até 5% de artefatos.');
+  if (points.some((p) => p.lowConfidence)) notes.push('Há janelas com 3% a 5% de artefatos: alpha-1 com confiança reduzida.');
 
   const rampThresholds =
     input.protocol === 'ramp' ? estimateRampThresholds(points.map((p) => ({ hrBpm: p.hrBpm, alpha1: p.alpha1 }))) : null;
-  if (input.protocol === 'ramp' && rampThresholds === null) notes.push('A rampa nao sustentou a regressao (poucos pontos, faixa de FC curta ou alpha-1 sem queda).');
+  if (input.protocol === 'ramp' && rampThresholds === null) notes.push('A rampa não sustentou a regressão (poucos pontos, faixa de FC curta ou alpha-1 sem queda).');
 
   return {
     source: input.source,
@@ -95,7 +95,7 @@ export function recordingReport(input: RecordingInput): RecordingReport {
 }
 
 function orthostaticDrop(input: RecordingInput, beats: ReturnType<typeof classifyRrSeries>): RecordingReport['orthostatic'] {
-  const stand = input.markers.find((m) => /stand|levant|em pe/i.test(m.label));
+  const stand = input.markers.find((m) => /stand|levant|em p[eé]/i.test(m.label));
   if (stand === undefined) return { supineRmssdMs: null, standingRmssdMs: null, dropPct: null };
   const windowRmssd = (fromS: number, toS: number): number | null =>
     rmssd(beatsInWindow(beats, (stand.tS + toS) * MS_PER_SECOND, (toS - fromS) * MS_PER_SECOND));
